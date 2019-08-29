@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Lamina 
 {
-    private ArrayList<Cajita> laminas = new ArrayList<Cajita>();
+    private ArrayList<TipoFigura> laminas = new ArrayList<>();
     
-    Lamina(ArrayList<Cajita> a_figuras)
+    Lamina(ArrayList<TipoFigura> a_figuras)
     {
         laminas = a_figuras;
     }
