@@ -12,13 +12,35 @@ public class Cajita
         f_y = y;
         p_tipo_figura = tipo_figura;
     }
-
-    private int getX()
+    
+    Cajita()
     {
+        
+    }
+
+    public int getF_x() {
         return f_x;
     }
-    private int getY()
-    {
+
+    public void setF_x(int f_x) {
+        this.f_x = f_x;
+    }
+
+    public int getF_y() {
         return f_y;
     }
+
+    public void setF_y(int f_y) {
+        this.f_y = f_y;
+    }
+
+    public int getTipo_figura() {
+        return tipo_figura;
+    }
+
+    public void setTipo_figura(int tipo_figura) {
+        this.tipo_figura = tipo_figura;
+    }
+    
+    
 }

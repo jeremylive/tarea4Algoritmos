@@ -1,12 +1,14 @@
 package tarea1_analisis_de_algoritmos;
 
-public class TipoFigura 
+public class TipoFigura extends Programa
 {
     private int id, largo, ancho;
     
-    TipoFigura()
+    TipoFigura(int p_id, int p_largo, int p_ancho)
     {
-        
+        this.id = p_id;
+        this.largo = p_largo;
+        this.ancho = p_ancho;
     }
 
     public int getId() {
