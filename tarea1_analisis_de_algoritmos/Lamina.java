@@ -12,6 +12,11 @@ public class Lamina
         laminas = a_figuras;
     }
     
+    Lamina()
+    {
+        
+    }
+    
     
         
 }

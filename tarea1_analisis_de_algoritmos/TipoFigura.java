@@ -10,6 +10,11 @@ public class TipoFigura extends Programa
         this.largo = p_largo;
         this.ancho = p_ancho;
     }
+    
+    TipoFigura()
+    {
+        
+    }
 
     public int getId() {
         return id;

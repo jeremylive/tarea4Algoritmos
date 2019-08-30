@@ -10,6 +10,11 @@ public class Tablero
         param_x = p_x;
         area = p_x * p_x;
     }
+    
+    Tablero()
+    {
+        
+    }
 
     private int getX()
     {

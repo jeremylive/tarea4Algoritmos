@@ -15,10 +15,16 @@ public class Programa
     //Variable globales
     private ArrayList<TipoFigura> matriz = new ArrayList<>();
     private ArrayList<TipoFigura> lista_final_lamina = new ArrayList<>();
+    private ArrayList<List> puntos_diagonal = new ArrayList<>();
     private int totales_finales_lamina = 0;
     private int diametro = 0;
     private int total_id = 0;
+    private int largo_matriz = 0;
+    private int contador = 0;  
     private boolean bandera = true;
+    private TipoFigura tipoFigura = new TipoFigura();
+    private Tablero tablero = new Tablero();
+    private Lamina lamina = new Lamina();
     
     /*
         Empieza programa con la clase main
@@ -43,10 +49,9 @@ public class Programa
         
         //Obtengo los puntos en la diagonal
         obtPuntosDiagonales();
-        
+     
+        //Imprimo mensaje
         imprimir();    
-        
-        obtPuntosDiagonales();
         
         //Empieza para organizar de una vez el crear una figura o mejor dicho
         //un tipo de figura de tal forma que se eleve de vuelta a el mundo visto
@@ -54,14 +59,21 @@ public class Programa
         crearTipoFigura();
         
         //
+        System.out.println("Se obtuvieron puntos");
         
+        //
+        //
 
     }
 
     /*
-     ..
+     Funcion que sepa donde parar en la obtencion de puntos 
     */
- 
+    private void sacoPuntos()
+    {
+        
+    }
+        
     /*
         Al crear el tipo de figura, me base en la clase TipoFigura
     */
@@ -91,18 +103,18 @@ public class Programa
     */
     private ArrayList<List> obtPuntosDiagonales()
     {
-        int largo_matriz = matriz.size();
-        ArrayList<List> puntos_diagonal = new ArrayList<>();
-        int contador = 0;    
+        largo_matriz = matriz.size();
+        puntos_diagonal = new ArrayList<>();
+        contador = 0;    
         
         
         //obtengo variable de los x y y de donde estan ubicado
-        
+        //Falta hacer esto y aquello
         
         for (int i = 0; i < largo_matriz; i++) {
             for (int j = 0; j < largo_matriz; j++) {
                 
-                //duda, como obtengo los puntos en corrida secuencial?
+                //como saber dodne parar
                 if(j==puntos_diagonal.get(contador).getY()){
                     //Se corre una fila para abajo
                     i++;
@@ -115,11 +127,9 @@ public class Programa
                 //Hacer pruebas
             }
         }
-        System.out.println("Se obtuvieron puntos");
+        
         return puntos_diagonal;
     }
-    
-    
     
     /*
         Se inicializa el tablero donde se coloca las posiciones 
@@ -128,9 +138,8 @@ public class Programa
     private void crearTablero(int diametro)
     {
         //Inicializo tablero con x de lado y ancho
-        Tablero tablero = new Tablero(diametro);
-        
-        
+        setTablero(new Tablero(diametro));
+
         for(int i=0; getMatriz().size() > i; i++)
         {
             for(int j=0; getMatriz().size() > j; j++)
@@ -176,6 +185,54 @@ public class Programa
     /*
         Gets y Sets
     */
+
+    public ArrayList<List> getPuntos_diagonal() {
+        return puntos_diagonal;
+    }
+
+    public void setPuntos_diagonal(ArrayList<List> puntos_diagonal) {
+        this.puntos_diagonal = puntos_diagonal;
+    }
+
+    public int getLargo_matriz() {
+        return largo_matriz;
+    }
+
+    public void setLargo_matriz(int largo_matriz) {
+        this.largo_matriz = largo_matriz;
+    }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+
+    public TipoFigura getTipoFigura() {
+        return tipoFigura;
+    }
+
+    public void setTipoFigura(TipoFigura tipoFigura) {
+        this.tipoFigura = tipoFigura;
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
+
+    public Lamina getLamina() {
+        return lamina;
+    }
+
+    public void setLamina(Lamina lamina) {
+        this.lamina = lamina;
+    }
     
     public ArrayList<TipoFigura> getMatriz() {
         return matriz;
