@@ -34,5 +34,6 @@ public class TipoFigura extends Programa
     public void setAncho(int ancho) {
         this.ancho = ancho;
     }
+ 
     
 }
