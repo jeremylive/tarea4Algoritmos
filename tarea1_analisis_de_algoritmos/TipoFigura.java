@@ -13,7 +13,9 @@ public class TipoFigura extends Programa
     
     TipoFigura()
     {
-        
+        this.id = 0;
+        this.largo = 0;
+        this.ancho = 0;     
     }
 
     public int getId() {

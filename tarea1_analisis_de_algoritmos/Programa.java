@@ -22,7 +22,7 @@ public class Programa
     private int largo_matriz = 0;
     private int contador = 0;  
     private boolean bandera = true;
-    private TipoFigura tipoFigura = new TipoFigura();
+    //private TipoFigura tipoFigura = new TipoFigura();
     private Tablero tablero = new Tablero();
     private Lamina lamina = new Lamina();
     
@@ -145,11 +145,11 @@ public class Programa
             for(int j=0; getMatriz().size() > j; j++)
             {
                 //Cajita figura = new Cajita(i, j, 0);
-                TipoFigura figura = new TipoFigura(0, i, j);//logica para poner 
+                TipoFigura tipoFigura = new TipoFigura(0, i, j);//logica para poner 
                 //ids de forma que identifique el espacio que corresponde(HASH)
                 
                 
-                setMatriz(figura);
+                setMatriz(tipoFigura);
             }
         }
         Lamina p_lamina = new Lamina(matriz);
