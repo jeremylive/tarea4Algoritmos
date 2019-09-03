@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
 
@@ -23,27 +24,77 @@ public class Programa
     private int contador = 0;  
     private boolean bandera = true;
     private Lamina lamina = new Lamina();
+    private String list_tipo = "";
+    private int canti1, canti2, canti3 = 0;
+    private int[] list_cant = {};
     
     /*
         Empieza programa con la clase main
     */
     Programa() 
     {
+        String cadena, cant1, cant2, cant3 = "";
+        Random random = new Random(2);
+        
         do {
-            String cadena=JOptionPane.showInputDialog("Digite su diametro del tablero");
-            JOptionPane.showMessageDialog(null, cadena);
-            setDiametro(convertIntoInt(cadena));      
+            cadena=JOptionPane.showInputDialog("Digite su diametro de la lamina");
+            setDiametro(convertIntoInt(cadena)); 
+            JOptionPane.showMessageDialog(null, "Info: tipo de figura nxm. tipo1 4x4, tipo2 8x8, tipo3 32x32");
+            cant1=JOptionPane.showInputDialog("Digite cuantas figutas quiere del tipo 1");
+            cant2=JOptionPane.showInputDialog("Digite cuantas figutas quiere del tipo 2");
+            cant3=JOptionPane.showInputDialog("Digite cuantas figutas quiere del tipo 3");
         }while(getDiametro()%2 != 0);
+        canti1 = convertIntoInt(cant1);
+        canti2 = convertIntoInt(cant2);
+        canti3 = convertIntoInt(cant3);
+        list_cant[0] = canti1;
+        list_cant[1] = canti2;
+        list_cant[2] = canti3;
 
         crearTablero(getDiametro());
+
+        while(canti1 != 0 & canti2 != 0 && canti3 != 0)
+        {
+            
+        }
+        
+        if(canti3 == 0)
+        {
+            if(canti2 == 0)
+            {
+                if(canti1 == 0)
+                {
+
+                }
+            }
+        }
+        
+        if(canti2 == 0)
+        {
+            if(canti1 == 0)
+            {
+                
+            }
+        }
+
+
         //obtPuntosDiagonales();
         //crearTipoFigura();
     }
+    
+    /*
+        Funcion que recorta las cantidades para ir acorde con lo que pidio el cliente
+    */
+    
+    /*
+        Funcion
+    */
+    
 
     /*
-     Funcion que sepa donde parar en la obtencion de puntos 
+     Funcion que coloca las figuras dentro de la lamina
     */
-    private void sacoPuntos()
+    private void recorteLamina()
     {
         
     }
@@ -118,6 +169,43 @@ public class Programa
         }
         return puntos_diagonal;
     }
+    
+    /*
+        Maximo comun divisor
+    */
+    public static int MCD(int A,int B)
+    {
+        int Dividendo;
+        int Divisor;
+        int Resto;
+
+        
+        System.out.println("Introduce el valor de A y B");
+        if(A > B)
+            {
+                Dividendo = A;
+                Divisor = B;
+            }
+        else
+            {
+                Dividendo = B;
+                Divisor = A;
+            }
+        Resto = Dividendo  %  Divisor;
+        do
+            {
+                Dividendo = Divisor;
+                Divisor = Resto;
+                Resto = Dividendo  %  Divisor;
+            }
+        while (Resto!= 0);
+
+        System.out.println("El MCD de A y B es" +Divisor);
+        
+        return Divisor;
+
+    }
+    
     
     /*
         Se inicializa el tablero donde se coloca las posiciones 
