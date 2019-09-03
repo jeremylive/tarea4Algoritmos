@@ -104,25 +104,68 @@ public class Programa
                     x_global += 2;
                     y_global += 2;
                 }
+                TipoFigura nueva_figura2 = new TipoFigura(1, 4, 2);
 
+                matriz.add(nueva_figura2);
+                matriz.get(contador).setId(3);
+                contador++;
+                canti2-=1;
+                if(contador == 1)
+                {
+                    for (int i = x_global; i < x_global+2; i++) {
+                        for (int j = y_global; j < y_global+4; j++) {
+                            espejo[i][j] = 2;
+                            if(y_global >= getDiametro())
+                            {
+                                int num = y_global-getDiametro();
+                                if(num < 2){
+                                    System.out.println("Se desecharon 8 cuadritos");
+                                    desecho += 4;
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                }else{
+                    for (int i = x_global; i < x_global+2; i++) {
+                        for (int j = y_global; j < y_global+4; j++) {
+                            espejo[i][j] = 2;
+                            if(y_global >= getDiametro())
+                            {
+                                int num = y_global-getDiametro();
+                                if(num < 2){
+                                    System.out.println("Se desecharon 8 cuadritos");
+                                    desecho += 4;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+                x_global += 2;
+                y_global += 4;
             }
-            TipoFigura nueva_figura2 = new TipoFigura(1, 4, 2);
+            
+        
 
-            matriz.add(nueva_figura2);
+            TipoFigura nueva_figura3 = new TipoFigura(1, 8, 4);
+
+            matriz.add(nueva_figura3);
             matriz.get(contador).setId(3);
             contador++;
-            canti2-=1;
+            canti3-=1;
             if(contador == 1)
             {
-                for (int i = x_global; i < x_global+2; i++) {
-                    for (int j = y_global; j < y_global+4; j++) {
-                        espejo[i][j] = 2;
+                for (int i = x_global; i < x_global+4; i++) {
+                    for (int j = y_global; j < y_global+8; j++) {
+                        espejo[i][j] = 3;
                         if(y_global >= getDiametro())
                         {
                             int num = y_global-getDiametro();
                             if(num < 2){
                                 System.out.println("Se desecharon 8 cuadritos");
-                                desecho += 4;
+                                desecho += 8;
                             }
                             break;
                         }
@@ -130,66 +173,24 @@ public class Programa
                 }
 
             }else{
-                for (int i = x_global; i < x_global+2; i++) {
-                    for (int j = y_global; j < y_global+4; j++) {
-                        espejo[i][j] = 2;
+                for (int i = x_global; i < x_global+4; i++) {
+                    for (int j = y_global; j < y_global+8; j++) {
+                        espejo[i][j] = 3;
                         if(y_global >= getDiametro())
                         {
                             int num = y_global-getDiametro();
                             if(num < 2){
                                 System.out.println("Se desecharon 8 cuadritos");
-                                desecho += 4;
+                                desecho += 8;
                             }
                             break;
                         }
                     }
                 }
             }
-            x_global += 2;
-            y_global += 4;
+            x_global += 4;
+            y_global += 8;  
         }
-
-        TipoFigura nueva_figura3 = new TipoFigura(1, 8, 4);
-       
-        matriz.add(nueva_figura3);
-        matriz.get(contador).setId(3);
-        contador++;
-        canti3-=1;
-        if(contador == 1)
-        {
-            for (int i = x_global; i < x_global+4; i++) {
-                for (int j = y_global; j < y_global+8; j++) {
-                    espejo[i][j] = 3;
-                    if(y_global >= getDiametro())
-                    {
-                        int num = y_global-getDiametro();
-                        if(num < 2){
-                            System.out.println("Se desecharon 8 cuadritos");
-                            desecho += 8;
-                        }
-                        break;
-                    }
-                }
-            }
-
-        }else{
-            for (int i = x_global; i < x_global+4; i++) {
-                for (int j = y_global; j < y_global+8; j++) {
-                    espejo[i][j] = 3;
-                    if(y_global >= getDiametro())
-                    {
-                        int num = y_global-getDiametro();
-                        if(num < 2){
-                            System.out.println("Se desecharon 8 cuadritos");
-                            desecho += 8;
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-        x_global += 4;
-        y_global += 8;        
         //
         /*
         if(canti3 == 0)
