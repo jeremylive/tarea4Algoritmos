@@ -16,25 +16,27 @@ public class Programa
     //Variable globales
     private ArrayList<TipoFigura> matriz = new ArrayList<>();
     private ArrayList<TipoFigura> lista_final_lamina = new ArrayList<>();
-    private ArrayList<List> puntos_diagonal = new ArrayList<>();
+    private boolean bandera = true;
+    private Lamina lamina = new Lamina();
+    private String list_tipo = "";
+    private int[] list_cant = {};
+    private int[] puntos_diagonal = {};
     private int totales_finales_lamina = 0;
     private int diametro = 0;
     private int total_id = 0;
     private int largo_matriz = 0;
     private int contador = 0;  
-    private boolean bandera = true;
-    private Lamina lamina = new Lamina();
-    private String list_tipo = "";
     private int canti1, canti2, canti3 = 0;
-    private int[] list_cant = {};
-    
+    private Random random = new Random();
+    private int tipo_random = 0;
+    private 
+
     /*
         Empieza programa con la clase main
     */
     Programa() 
     {
         String cadena, cant1, cant2, cant3 = "";
-        Random random = new Random(2);
         
         do {
             cadena=JOptionPane.showInputDialog("Digite su diametro de la lamina");
@@ -55,7 +57,17 @@ public class Programa
 
         while(canti1 != 0 & canti2 != 0 && canti3 != 0)
         {
-            
+            tipo_random = random.nextInt(3)+1;
+            if(tipo_random != 3)
+            {
+                if(tipo_random != 2)
+                {
+                    TipoFigura nueva_figura = new TipoFigura(1, 4, 4);
+                    
+                }
+                TipoFigura nueva_figura = new TipoFigura(1, 8, 8);
+            }
+            TipoFigura nueva_figura = new TipoFigura(1, 32, 32);
         }
         
         if(canti3 == 0)
@@ -124,19 +136,14 @@ public class Programa
             {
                 for (int j = 0; j < largo_matriz; j++) 
                 {
-                    //como saber dodne parar
-                    if(j==puntos_diagonal.get(contador).getY()){
-                        //Se corre una fila para abajo
+                    if(j==puntos_diagonal[contador]){
                         i++;
-                        
-                        //creo Figura con las dimenciones obtenidas
                     }
 
-                    if(i==puntos_diagonal.get(contador).getX()){
+                    if(i==puntos_diagonal[contador]){
                         i++;
                         j=0;                    
                     }
-                    //Hacer pruebas
                 }
             }
         }
@@ -147,9 +154,8 @@ public class Programa
         Funcion para obtener los puntos de una matriz de una diagonal que cae
         Obtengo las coordenadas x y y de donde se encuentran los puntos
     */
-    private ArrayList<List> obtPuntosDiagonales()
+    private int[] obtPuntosDiagonales()
     {
-        puntos_diagonal = new ArrayList<>();
         largo_matriz = matriz.size();
         contador = 0;    
                 
@@ -157,11 +163,11 @@ public class Programa
         {
             for (int j = 0; j < largo_matriz; j++) 
             {
-                if(j==puntos_diagonal.get(contador).getY()){
+                if(j==puntos_diagonal[contador]){
                     i++;
                 }
                 
-                if(i==puntos_diagonal.get(contador).getX()){
+                if(i==puntos_diagonal[contador]){
                     i++;
                     j=0;                    
                 }
