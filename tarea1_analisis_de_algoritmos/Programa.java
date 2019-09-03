@@ -38,14 +38,13 @@ public class Programa
     {
         String cadena, cant1, cant2, cant3 = "";
         
-        do {
-            cadena=JOptionPane.showInputDialog("Digite su diametro de la lamina");
-            setDiametro(convertIntoInt(cadena)); 
-            JOptionPane.showMessageDialog(null, "Info: tipo de figura nxm. tipo1 4x4, tipo2 8x8, tipo3 32x32");
-            cant1=JOptionPane.showInputDialog("Digite cuantas figutas quiere del tipo 1");
-            cant2=JOptionPane.showInputDialog("Digite cuantas figutas quiere del tipo 2");
-            cant3=JOptionPane.showInputDialog("Digite cuantas figutas quiere del tipo 3");
-        }while(getDiametro()%2 != 0);
+        cadena=JOptionPane.showInputDialog("Digite su diametro de la lamina");
+        setDiametro(convertIntoInt(cadena)); 
+        JOptionPane.showMessageDialog(null, "Info: tipo de figura nxm. tipo1 4x4, tipo2 8x8, tipo3 32x32");
+        cant1=JOptionPane.showInputDialog("Digite cuantas figutas quiere del tipo 1");
+        cant2=JOptionPane.showInputDialog("Digite cuantas figutas quiere del tipo 2");
+        cant3=JOptionPane.showInputDialog("Digite cuantas figutas quiere del tipo 3");
+        System.out.println("continue.");
         canti1 = convertIntoInt(cant1);
         canti2 = convertIntoInt(cant2);
         canti3 = convertIntoInt(cant3);
@@ -192,6 +191,7 @@ public class Programa
         x_global += 4;
         y_global += 8;        
         //
+        /*
         if(canti3 == 0)
         {
             if(canti2 == 0)
@@ -210,10 +210,20 @@ public class Programa
                 
             }
         }
-
+        */
+        imprimirMatriz();
 
         //obtPuntosDiagonales();
         //crearTipoFigura();
+    }
+    
+    void imprimirMatriz()
+    {
+        for (int i = 0; i < getDiametro(); i++) {
+            for (int j = 0; j < getDiametro(); j++) {
+                System.out.println(espejo[i][j]+" ");
+            }
+        }
     }
     
     /**
