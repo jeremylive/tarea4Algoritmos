@@ -15,12 +15,10 @@ public class Programa
 {
     //Variable globales
     private ArrayList<TipoFigura> matriz = new ArrayList<>();
-    private ArrayList<TipoFigura> lista_final_lamina = new ArrayList<>();
-    private boolean bandera = true;
-    private Lamina lamina = new Lamina();
     private String list_tipo = "";
-    private int[] list_cant = {};
+    private int[] list_cant = new int[3];
     private int[] puntos_diagonal = {};
+    private int[][] espejo = {}; 
     private int totales_finales_lamina = 0;
     private int diametro = 0;
     private int total_id = 0;
@@ -29,8 +27,10 @@ public class Programa
     private int canti1, canti2, canti3 = 0;
     private Random random = new Random();
     private int tipo_random = 0;
-    private 
-
+    private int x_global, y_global = 0;
+    private int cont1,cont11,cont2,cont22,cont3,cont33 = 0;
+    private int desecho = 0;
+    private int lleva_cuenta = 0;
     /*
         Empieza programa con la clase main
     */
@@ -53,8 +53,8 @@ public class Programa
         list_cant[1] = canti2;
         list_cant[2] = canti3;
 
-        crearTablero(getDiametro());
-
+        
+        
         while(canti1 != 0 & canti2 != 0 && canti3 != 0)
         {
             tipo_random = random.nextInt(3)+1;
@@ -62,14 +62,136 @@ public class Programa
             {
                 if(tipo_random != 2)
                 {
-                    TipoFigura nueva_figura = new TipoFigura(1, 4, 4);
+                    TipoFigura nueva_figura1 = new TipoFigura(1, 2, 2);
                     
+                    matriz.add(nueva_figura1);
+                    matriz.get(contador).setId(1);
+                    contador++;
+                    canti1-=1;
+                    if(contador == 1)
+                    {
+                        for (int i = x_global; i < x_global+2; i++) {
+                            for (int j = y_global; j < y_global+2; j++) {
+                                espejo[i][j] = 1;
+                                if(y_global >= getDiametro())
+                                {
+                                    int num = y_global-getDiametro();
+                                    if(num < 2){
+                                        System.out.println("Se desecharon 4 cuadritos");
+                                        desecho += 4;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        
+                    }else{
+                        for (int i = x_global; i < x_global+2; i++) {
+                            for (int j = y_global; j < y_global+2; j++) {
+                                espejo[i][j] = 1;
+                                if(y_global >= getDiametro())
+                                {
+                                    int num = y_global-getDiametro();
+                                    if(num < 2){
+                                        System.out.println("Se desecharon 4 cuadritos");
+                                        desecho += 4;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    x_global += 2;
+                    y_global += 2;
                 }
-                TipoFigura nueva_figura = new TipoFigura(1, 8, 8);
+
             }
-            TipoFigura nueva_figura = new TipoFigura(1, 32, 32);
+            TipoFigura nueva_figura2 = new TipoFigura(1, 4, 2);
+
+            matriz.add(nueva_figura2);
+            matriz.get(contador).setId(3);
+            contador++;
+            canti2-=1;
+            if(contador == 1)
+            {
+                for (int i = x_global; i < x_global+2; i++) {
+                    for (int j = y_global; j < y_global+4; j++) {
+                        espejo[i][j] = 2;
+                        if(y_global >= getDiametro())
+                        {
+                            int num = y_global-getDiametro();
+                            if(num < 2){
+                                System.out.println("Se desecharon 8 cuadritos");
+                                desecho += 4;
+                            }
+                            break;
+                        }
+                    }
+                }
+
+            }else{
+                for (int i = x_global; i < x_global+2; i++) {
+                    for (int j = y_global; j < y_global+4; j++) {
+                        espejo[i][j] = 2;
+                        if(y_global >= getDiametro())
+                        {
+                            int num = y_global-getDiametro();
+                            if(num < 2){
+                                System.out.println("Se desecharon 8 cuadritos");
+                                desecho += 4;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            x_global += 2;
+            y_global += 4;
         }
-        
+
+        TipoFigura nueva_figura3 = new TipoFigura(1, 8, 4);
+       
+        matriz.add(nueva_figura3);
+        matriz.get(contador).setId(3);
+        contador++;
+        canti3-=1;
+        if(contador == 1)
+        {
+            for (int i = x_global; i < x_global+4; i++) {
+                for (int j = y_global; j < y_global+8; j++) {
+                    espejo[i][j] = 3;
+                    if(y_global >= getDiametro())
+                    {
+                        int num = y_global-getDiametro();
+                        if(num < 2){
+                            System.out.println("Se desecharon 8 cuadritos");
+                            desecho += 8;
+                        }
+                        break;
+                    }
+                }
+            }
+
+        }else{
+            for (int i = x_global; i < x_global+4; i++) {
+                for (int j = y_global; j < y_global+8; j++) {
+                    espejo[i][j] = 3;
+                    if(y_global >= getDiametro())
+                    {
+                        int num = y_global-getDiametro();
+                        if(num < 2){
+                            System.out.println("Se desecharon 8 cuadritos");
+                            desecho += 8;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        x_global += 4;
+        y_global += 8;        
+        //
         if(canti3 == 0)
         {
             if(canti2 == 0)
@@ -94,91 +216,16 @@ public class Programa
         //crearTipoFigura();
     }
     
-    /*
-        Funcion que recorta las cantidades para ir acorde con lo que pidio el cliente
-    */
+    /**
+     * 
+     * FALTO QUE CON LOS PUNTOS DE LA DIAGONAL DENTRO DE LA MATRIZ SE PUDIERA HACER UN STOP
+     * 
+     */
     
-    /*
-        Funcion
-    */
     
-
-    /*
-     Funcion que coloca las figuras dentro de la lamina
-    */
-    private void recorteLamina()
-    {
-        
-    }
-        
-    /*
-        Al crear el tipo de figura, me base en la clase TipoFigura
-    */
-    private void crearTipoFigura()
-    {
-        //Creo lamina con su indice y largo y ancho
-        //Comienzo creando desde la esquina izquierda superior
-        //puede tener varias formas distintas
-        while(bandera)
-        {
-            //El marcado de ids son las cuales se entran para encontrar despues
-            //si no o si si, por lo que el id empieza desde 0
-            
-            //TipoFigura t_figura = new TipoFigura(0, getDiametro(), getDiametro());
-        }
-        
-        //
-        int punto_diagonal = 0;
-        
-        for (int i = 0; i < largo_matriz; i++) 
-        {
-            if(i<punto_diagonal)
-            {
-                for (int j = 0; j < largo_matriz; j++) 
-                {
-                    if(j==puntos_diagonal[contador]){
-                        i++;
-                    }
-
-                    if(i==puntos_diagonal[contador]){
-                        i++;
-                        j=0;                    
-                    }
-                }
-            }
-        }
-        
-    }
-    
-    /*
-        Funcion para obtener los puntos de una matriz de una diagonal que cae
-        Obtengo las coordenadas x y y de donde se encuentran los puntos
-    */
-    private int[] obtPuntosDiagonales()
-    {
-        largo_matriz = matriz.size();
-        contador = 0;    
-                
-        for (int i = 0; i < largo_matriz; i++) 
-        {
-            for (int j = 0; j < largo_matriz; j++) 
-            {
-                if(j==puntos_diagonal[contador]){
-                    i++;
-                }
-                
-                if(i==puntos_diagonal[contador]){
-                    i++;
-                    j=0;                    
-                }
-            }
-        }
-        return puntos_diagonal;
-    }
-    
-    /*
+        /*
         Maximo comun divisor
-    */
+   
     public static int MCD(int A,int B)
     {
         int Dividendo;
@@ -211,25 +258,24 @@ public class Programa
         return Divisor;
 
     }
-    
+     */
+    /*
+        Funcion que recorta las cantidades para ir acorde con lo que pidio el cliente
+    */
     
     /*
-        Se inicializa el tablero donde se coloca las posiciones 
-        de las figuras. 
+        Funcion
     */
-    private void crearTablero(int diametro)
+    
+
+    /*
+     Funcion que coloca las figuras dentro de la lamina
+    */
+    private void recorteLamina()
     {
-        for(int i=0; diametro > i; i++)
-        {
-            for(int j=0; diametro > j; j++)
-            {
-                TipoFigura tipoFigura = new TipoFigura(0, i, j);                    
-                setMatriz(tipoFigura);
-            }
-        }
-        Lamina p_lamina = new Lamina(getMatriz());
+        
     }
-     
+   
     /*
         Se crea funcion para transformas String a Integer
     */
@@ -261,13 +307,7 @@ public class Programa
         Gets y Sets
     */
 
-    public ArrayList<List> getPuntos_diagonal() {
-        return puntos_diagonal;
-    }
 
-    public void setPuntos_diagonal(ArrayList<List> puntos_diagonal) {
-        this.puntos_diagonal = puntos_diagonal;
-    }
 
     public int getLargo_matriz() {
         return largo_matriz;
@@ -286,13 +326,6 @@ public class Programa
     }
 
 
-    public Lamina getLamina() {
-        return lamina;
-    }
-
-    public void setLamina(Lamina lamina) {
-        this.lamina = lamina;
-    }
     
     public ArrayList<TipoFigura> getMatriz() {
         return matriz;
@@ -302,13 +335,6 @@ public class Programa
         this.matriz.add(p_matriz);
     }
 
-    public ArrayList<TipoFigura> getLista_final_lamina() {
-        return lista_final_lamina;
-    }
-
-    public void setLista_final_lamina(ArrayList<TipoFigura> lista_final_lamina) {
-        this.lista_final_lamina = lista_final_lamina;
-    }
 
     public int getTotales_finales_lamina() {
         return totales_finales_lamina;
@@ -334,12 +360,13 @@ public class Programa
         this.total_id = total_id;
     }
 
-    public boolean isBandera() {
-        return bandera;
-    }
 
-    public void setBandera(boolean bandera) {
-        this.bandera = bandera;
-    }
+    /*
+    
+    
+    
+    
+    */
+    
     
 }
