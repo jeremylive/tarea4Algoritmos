@@ -22,8 +22,6 @@ public class Programa
     private int largo_matriz = 0;
     private int contador = 0;  
     private boolean bandera = true;
-    //private TipoFigura tipoFigura = new TipoFigura();
-    private Tablero tablero = new Tablero();
     private Lamina lamina = new Lamina();
     
     /*
@@ -31,39 +29,15 @@ public class Programa
     */
     Programa() 
     {
-        //Pido datos
-        String cadena=JOptionPane.showInputDialog("Digite su diametro del tablero");
-        JOptionPane.showMessageDialog(null, cadena);
-        setDiametro(convertIntoInt(cadena));
-        
-        //Evaluo que solo lados pares entran
-        while(getDiametro()%2 != 0)
-        {
-            //hago la salida del programa y vuelvo a preguntar de nuevo
-            cadena=JOptionPane.showInputDialog("Digite su diametro del tablero");
-            JOptionPane.showMessageDialog(null, cadena);       
-        }
-        
-        //Inicio programa
-        crearTablero(getDiametro());
-        
-        //Obtengo los puntos en la diagonal
-        obtPuntosDiagonales();
-     
-        //Imprimo mensaje
-        imprimir();    
-        
-        //Empieza para organizar de una vez el crear una figura o mejor dicho
-        //un tipo de figura de tal forma que se eleve de vuelta a el mundo visto
-        //en todo momento dentro del codigo.
-        crearTipoFigura();
-        
-        //
-        System.out.println("Se obtuvieron puntos");
-        
-        //
-        //
+        do {
+            String cadena=JOptionPane.showInputDialog("Digite su diametro del tablero");
+            JOptionPane.showMessageDialog(null, cadena);
+            setDiametro(convertIntoInt(cadena));      
+        }while(getDiametro()%2 != 0);
 
+        crearTablero(getDiametro());
+        //obtPuntosDiagonales();
+        //crearTipoFigura();
     }
 
     /*
@@ -79,11 +53,9 @@ public class Programa
     */
     private void crearTipoFigura()
     {
-        //se hace modulo 10
-        //totales_finales_lamina %= 10;
-        
         //Creo lamina con su indice y largo y ancho
         //Comienzo creando desde la esquina izquierda superior
+        //puede tener varias formas distintas
         while(bandera)
         {
             //El marcado de ids son las cuales se entran para encontrar despues
@@ -93,7 +65,30 @@ public class Programa
         }
         
         //
+        int punto_diagonal = 0;
         
+        for (int i = 0; i < largo_matriz; i++) 
+        {
+            if(i<punto_diagonal)
+            {
+                for (int j = 0; j < largo_matriz; j++) 
+                {
+                    //como saber dodne parar
+                    if(j==puntos_diagonal.get(contador).getY()){
+                        //Se corre una fila para abajo
+                        i++;
+                        
+                        //creo Figura con las dimenciones obtenidas
+                    }
+
+                    if(i==puntos_diagonal.get(contador).getX()){
+                        i++;
+                        j=0;                    
+                    }
+                    //Hacer pruebas
+                }
+            }
+        }
         
     }
     
@@ -103,20 +98,15 @@ public class Programa
     */
     private ArrayList<List> obtPuntosDiagonales()
     {
-        largo_matriz = matriz.size();
         puntos_diagonal = new ArrayList<>();
+        largo_matriz = matriz.size();
         contador = 0;    
-        
-        
-        //obtengo variable de los x y y de donde estan ubicado
-        //Falta hacer esto y aquello
-        
-        for (int i = 0; i < largo_matriz; i++) {
-            for (int j = 0; j < largo_matriz; j++) {
                 
-                //como saber dodne parar
+        for (int i = 0; i < largo_matriz; i++) 
+        {
+            for (int j = 0; j < largo_matriz; j++) 
+            {
                 if(j==puntos_diagonal.get(contador).getY()){
-                    //Se corre una fila para abajo
                     i++;
                 }
                 
@@ -124,10 +114,8 @@ public class Programa
                     i++;
                     j=0;                    
                 }
-                //Hacer pruebas
             }
         }
-        
         return puntos_diagonal;
     }
     
@@ -137,22 +125,15 @@ public class Programa
     */
     private void crearTablero(int diametro)
     {
-        //Inicializo tablero con x de lado y ancho
-        setTablero(new Tablero(diametro));
-
-        for(int i=0; getMatriz().size() > i; i++)
+        for(int i=0; diametro > i; i++)
         {
-            for(int j=0; getMatriz().size() > j; j++)
+            for(int j=0; diametro > j; j++)
             {
-                //Cajita figura = new Cajita(i, j, 0);
-                TipoFigura tipoFigura = new TipoFigura(0, i, j);//logica para poner 
-                //ids de forma que identifique el espacio que corresponde(HASH)
-                
-                
+                TipoFigura tipoFigura = new TipoFigura(0, i, j);                    
                 setMatriz(tipoFigura);
             }
         }
-        Lamina p_lamina = new Lamina(matriz);
+        Lamina p_lamina = new Lamina(getMatriz());
     }
      
     /*
@@ -210,21 +191,6 @@ public class Programa
         this.contador = contador;
     }
 
-    public TipoFigura getTipoFigura() {
-        return tipoFigura;
-    }
-
-    public void setTipoFigura(TipoFigura tipoFigura) {
-        this.tipoFigura = tipoFigura;
-    }
-
-    public Tablero getTablero() {
-        return tablero;
-    }
-
-    public void setTablero(Tablero tablero) {
-        this.tablero = tablero;
-    }
 
     public Lamina getLamina() {
         return lamina;
